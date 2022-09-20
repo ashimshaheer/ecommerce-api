@@ -1,9 +1,12 @@
+
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.auth import AuthToken
-from .serializers import UserSerializer
+from .serializers import UserSerializer,ProductSerializer
+from rest_framework import generics,serializers,permissions
+from .models import Product
 # Create your views here.
 
 @api_view(['POST'])
@@ -52,3 +55,11 @@ def register_api(request):
         },
         'token':token
     })
+
+class Listproduct(generics.ListCreateAPIView):
+    queryset=Product.objects.all()
+    serializer_class=ProductSerializer
+
+class Detailproduct(generics.RetrieveUpdateDestroyAPIView):
+    queryset=Product.objects.all()
+    serializer_class=ProductSerializer

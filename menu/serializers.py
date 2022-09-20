@@ -1,5 +1,7 @@
+
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers,validators
+from .models import Product
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -36,3 +38,19 @@ class UserSerializer(serializers.ModelSerializer):
         last_name=last_name
        )
        return user
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    class meta:
+        fields=(
+           'category',
+           'name',
+           'price',
+           'stock',
+           'image',
+           'desc',
+           'size',
+           'date'
+
+        )
+    model=Product

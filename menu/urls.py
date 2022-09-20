@@ -11,5 +11,8 @@ urlpatterns = [
    path('register/',views.register_api),
    path('logout',knox_views.LoginView.as_view()),
    path('logout',knox_views.LogoutAllView.as_view()),
+   path('product',views.Listproduct.as_view(),name='product '),
+   path('product/<int:id>',views.Detailproduct.as_view(),name='product'),
+
 
 ]
