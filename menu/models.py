@@ -18,5 +18,4 @@ class Product(models.Model):
     size=models.IntegerField()
     date=models.DateField(auto_now_add=True)
 
-    class Meta:
-        name=['-date']
+    
