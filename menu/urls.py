@@ -13,6 +13,7 @@ urlpatterns = [
    path('logout',knox_views.LogoutAllView.as_view()),
    path('product',views.Listproduct.as_view(),name='product '),
    path('product/<int:id>',views.Detailproduct.as_view(),name='product'),
+   path('addproduct',views.add_product)
 
 
 ]

@@ -1,4 +1,5 @@
 
+from urllib import response
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -63,3 +64,32 @@ class Listproduct(generics.ListCreateAPIView):
 class Detailproduct(generics.RetrieveUpdateDestroyAPIView):
     queryset=Product.objects.all()
     serializer_class=ProductSerializer
+
+
+def  add_product(request):
+    if request.method == 'POST':
+        name=request.POST.get('name')
+        price=request.POST.get('price')
+        desc=request.POST.get('desc')
+        image=request.FILES['upload']
+        sellername=request.user
+        product= Product(name=name,price=price,desc=desc,image=image,seller_name=sellername)
+        product.save()
+
+        return Response({
+        'product_info': {
+            'name':Product.name,
+            'price':Product.price,
+            'desc':Product.desc
+        },
+        
+    })
+    return Response({
+        'product_info': {
+            'name'
+            'price'
+            'desc'
+        },
+        
+    })
+  
